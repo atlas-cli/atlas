@@ -2,7 +2,7 @@ import { ClientProxy, ReadPacket } from '@nestjs/microservices';
 import { from, map, Observable, switchMap, throwError as _throw, } from 'rxjs';
 import { EventBridgeClient, PutEventsCommand, PutEventsCommandInput } from '@aws-sdk/client-eventbridge';
 import { ClientEventBridgeConfig } from './../types/client-event-bridge-config';
-import { DEFAULT_DETAIL_TYPE } from 'contants';
+import { DEFAULT_DETAIL_TYPE } from './../contants';
 
 export class ClientEventBridge extends ClientProxy {
     client: EventBridgeClient;
@@ -36,6 +36,7 @@ export class ClientEventBridge extends ClientProxy {
             );
     }
     async dispatchEvent(_: ReadPacket<any>): Promise<any> {
+        console.log('not implemented');
         return {};
     }
     publish(): () => void {
