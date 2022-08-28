@@ -4,8 +4,7 @@
 
 ## Description
 
-Atlas é um grupo de pacotes para desenvolvedores para ajudá-los a criar aplicativos que agregam valor e escala. Usando arquitetura sem servidor angular, nestjs, DynamoDB e AWS.
-
+Atlas is a developer package to add value and scale the group. Using angular serverless architecture, nestjs, DynamoDB and AWS.
 
 ## Getting started
 
