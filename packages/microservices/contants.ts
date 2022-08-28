@@ -1,0 +1,1 @@
+export const DEFAULT_DETAIL_TYPE = 'payload';
