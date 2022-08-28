@@ -1,3 +1,5 @@
+# Atlas
+
 <p align="center">A technology stack solution using the AWS Serverless architecture.<a href="https://atlascli.io" target="_blank">Atlas</a> stack for building applications focused on generating value.</p>
 
 ## Description
