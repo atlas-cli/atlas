@@ -19,7 +19,7 @@ Help us keep Nest open and inclusive. Please read and follow our [Code of Conduc
 
 ## <a name="question"></a> Got a Question or Problem?
 
-**Do not open issues for general support questions as we want to keep GitHub issues for bug reports and feature requests.** You've got much better chances of getting your question answered on [Stack Overflow][stackoverflow] where the questions should be tagged with tag `nestjs`.
+**Do not open issues for general support questions as we want to keep GitHub issues for bug reports and feature requests.** You've got much better chances of getting your question answered on [Stack Overflow][stackoverflow] where the questions should be tagged with tag `atlas`.
 
 Stack Overflow is a much better place to ask questions since:
 
@@ -58,7 +58,7 @@ Before you submit an issue, please search the issue tracker, maybe an issue for 
 
 We want to fix all the issues as soon as possible, but before fixing a bug we need to reproduce and confirm it. In order to reproduce bugs we will systematically ask you to provide a minimal reproduction scenario using a repository or [Gist](https://gist.github.com/). Having a live, reproducible scenario gives us wealth of important information without going back & forth to you with additional questions like:
 
-- version of NestJS used
+- version of atlas used
 - 3rd-party libraries and their versions
 - and most importantly - a use-case that fails
 
@@ -113,7 +113,7 @@ We cannot accept code without this.
    git push origin my-fix-branch
    ```
 
-1. In GitHub, send a pull request to `nestjs:master`.
+1. In GitHub, send a pull request to `atlas:master`.
 
 - If we suggest changes then:
 
@@ -321,14 +321,3 @@ changes to be accepted, the CLA must be signed. It's a quick process, we promise
 
 <!-- [coc]: https://github.com/angular/code-of-conduct/blob/master/CODE_OF_CONDUCT.md -->
 
-[commit-message-format]: https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit#
-<!-- [individual-cla]: http://code.google.com/legal/individual-cla-v1.0.html -->
-<!-- [corporate-cla]: http://code.google.com/legal/corporate-cla-v1.0.html -->
-[dev-doc]: https://github.com/nestjs/nest/blob/master/docs/DEVELOPER.md
-[github]: https://github.com/nestjs/nest
-[stackoverflow]: https://stackoverflow.com/questions/tagged/nestjs
-[discord]: https://discordapp.com/invite/G7Qnnhy
-[js-style-guide]: https://google.github.io/styleguide/jsguide.html
-[new_issue]: https://github.com/nestjs/nest/issues/new
-[gh_prs]: https://github.com/nestjs/nest/pulls
-[commits_samples]: https://github.com/nestjs/nest/commits/master

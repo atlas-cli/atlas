@@ -9,7 +9,7 @@ Atlas é um grupo de pacotes para desenvolvedores para ajudá-los a criar aplica
 
 ## Getting started
 
-* To check out the [docs](https://docs.atlascli.com), visit [docs.nestjs.com](https://docs.nestjs.com). :books:
+* To check out the [docs](https://docs.atlascli.com), visit [docs.atlascli.io](https://docs.atlascli.io). :books:
 
 ## Issues
 
