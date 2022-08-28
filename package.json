@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Pass: no test specified\" && exit 0",
-    "build": "echo \"Pass: no bioçd specified\" && exit 0"
+    "build": "echo \"Pass: no bioçd specified\" && exit 0",
+    "lint": "echo \"Pass: no bioçd specified\" && exit 0"
   },
   "repository": {
     "type": "git",
