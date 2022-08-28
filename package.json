@@ -4,12 +4,12 @@
   "description": "technology stack focused on value generation",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Pass: no test specified\" && exit 0",
+    "test": "jest",
     "build": "gulp build --dist node_modules/@atlas",
     "build:prod": "gulp build",
     "lint": "npm run lint:packages",
     "lint:packages": "eslint 'packages/**/**.ts' --ignore-pattern 'packages/**/*.spec.ts'",
-    "coverage": "nyc npm test"
+    "coverage": "nyc jest packages/**/*.spec.ts --coverage"
   },
   "repository": {
     "type": "git",
@@ -31,6 +31,7 @@
   },
   "homepage": "https://github.com/atlas-cli/atlas#readme",
   "devDependencies": {
+    "@aws-sdk/client-eventbridge": "^3.159.0",
     "@commitlint/cli": "^7.6.1",
     "@commitlint/config-angular": "^17.1.0",
     "@nestjs/common": "^9.0.11",
@@ -46,11 +47,13 @@
     "gulp": "^4.0.2",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-typescript": "^6.0.0-alpha.1",
-    "typescript": "4.7.4",
+    "jest": "^29.0.1",
     "nyc": "^15.1.0",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "typescript": "4.7.4"
   },
   "dependencies": {
-    "reflect-metadata": "^0.1.13"
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.5.6"
   }
 }
