@@ -1,0 +1,29 @@
+{
+  "name": "atlas",
+  "version": "0.0.1",
+  "description": "technology stack focused on value generation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Pass: no test specified\" && exit 0",
+    "build": "echo \"Pass: no bioçd specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atlas-cli/atlas.git"
+  },
+  "keywords": [
+    "atlas",
+    "nestjs",
+    "nest",
+    "angular",
+    "framework",
+    "stack",
+    "atlascli"
+  ],
+  "author": "AtlasCLI",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/atlas-cli/atlas/issues"
+  },
+  "homepage": "https://github.com/atlas-cli/atlas#readme"
+}
