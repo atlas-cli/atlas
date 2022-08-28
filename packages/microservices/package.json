@@ -1,0 +1,30 @@
+{
+    "name": "@atlas/microservices",
+    "version": "0.0.1",
+    "description": "Atlas - modern, fast, powerful AWS lambda implementation (@microservices).",
+    "author": "AtlasCLI",
+    "license": "MIT",
+    "homepage": "https://atlascli.io",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/atlas-cli/atlas"
+    },
+    "publishConfig": {
+      "access": "public"
+    },
+    "dependencies": {},
+    "devDependencies": {
+      "@nestjs/common": "9.0.11",
+      "@nestjs/core": "9.0.11",
+      "@nestjs/microservices": "9.0.11"
+    },
+    "peerDependencies": {
+      "@nestjs/common": "^9.0.0",
+      "@nestjs/core": "^9.0.0",
+      "@nestjs/microservices": "^9.0.0",
+      "reflect-metadata": "^0.1.12",
+      "rxjs": "^7.1.0"
+    },
+    "peerDependenciesMeta": {}
+  }
+  
