@@ -49,7 +49,6 @@ describe('client aws event-bridge', () => {
         .subscribe(
           (response) => console.log(response),
           (error) => {
-            console.log(error);
             expect(error.message).toBe('Timeout has occurred');
           },
         );

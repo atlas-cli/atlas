@@ -1,13 +1,15 @@
-import { PatternMetadata, Transport } from "@nestjs/microservices";
+import { PatternMetadata } from "@nestjs/microservices";
 import { PATTERN_HANDLER_METADATA, PATTERN_METADATA, TRANSPORT_METADATA } from "@nestjs/microservices/constants";
 import { PatternHandler } from '@nestjs/microservices/enums/pattern-handler.enum';
+import { TRANSPORT_METADATA_REQUEST_RESPONSE } from "./../contants";
+import 'reflect-metadata';
 
-export const HandlerRequestResponse = <T = PatternMetadata | string>(
-    metadata?: string,
+export const RequestResponsePattern = <T = PatternMetadata | string>(
+    metadata?: T,
   ): MethodDecorator => {
     return (
-      target: object,
-      key: string | symbol,
+      _: object,
+      __: string | symbol,
       descriptor: PropertyDescriptor,
     ) => {
       Reflect.defineMetadata(PATTERN_METADATA, metadata, descriptor.value);
@@ -16,7 +18,7 @@ export const HandlerRequestResponse = <T = PatternMetadata | string>(
         PatternHandler.MESSAGE,
         descriptor.value,
       );
-      Reflect.defineMetadata(TRANSPORT_METADATA, Transport.TCP, descriptor.value);
+      Reflect.defineMetadata(TRANSPORT_METADATA, TRANSPORT_METADATA_REQUEST_RESPONSE, descriptor.value);
       return descriptor;
     };
   };
