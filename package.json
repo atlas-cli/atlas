@@ -33,6 +33,7 @@
   "homepage": "https://github.com/atlas-cli/atlas#readme",
   "devDependencies": {
     "@aws-sdk/client-eventbridge": "^3.159.0",
+    "@aws-sdk/client-lambda": "^3.159.0",
     "@commitlint/cli": "^7.6.1",
     "@commitlint/config-angular": "^17.1.0",
     "@nestjs/common": "^9.0.11",

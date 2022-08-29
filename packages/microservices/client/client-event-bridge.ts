@@ -1,5 +1,5 @@
-import { ClientProxy, ReadPacket } from '@nestjs/microservices';
-import { from, map, Observable, switchMap, throwError as _throw, } from 'rxjs';
+import { ClientProxy, ReadPacket, WritePacket } from '@nestjs/microservices';
+import { throwError as _throw, } from 'rxjs';
 import { EventBridgeClient, PutEventsCommand, PutEventsCommandInput } from '@aws-sdk/client-eventbridge';
 import { ClientEventBridgeConfig } from './../types/client-event-bridge-config';
 import { DEFAULT_DETAIL_TYPE } from './../contants';
@@ -16,32 +16,26 @@ export class ClientEventBridge extends ClientProxy {
     close() {
         this.client = undefined;
     }
-    emit<TResult = any, TInput = any>(source: string, detail: TInput): Observable<TResult> {
+    async dispatchEvent({ pattern, data }: ReadPacket<any>): Promise<any> {
         const command: PutEventsCommandInput = {
             Entries: [
                 {
-                    Source: source,
+                    Source: pattern,
                     EventBusName: this.options.eventBusName,
                     DetailType: this.options.detailType ?? DEFAULT_DETAIL_TYPE,
                     Time: new Date(),
-                    Detail: JSON.stringify(detail),
+                    Detail: JSON.stringify(data),
                 },
             ]
         };
-        const event = () => from(this.client.send(new PutEventsCommand(command)));
-        return from(this.connect())
-            .pipe(
-                switchMap(() => event()),
-                map((_: any) => _)
-            );
+        return this.client.send(new PutEventsCommand(command));
     }
-    async dispatchEvent(_: ReadPacket<any>): Promise<any> {
-        console.log('not implemented');
-        return {};
-    }
-    publish(): () => void {
-        return () => {
-            console.log('not implemented');
-        };
+    publish(
+        packet: ReadPacket<any>,
+        callback: (packet: WritePacket<any>) => void,
+    ) {
+        console.log('AWS Event-Bridge and sqs don\´t support request-response. ');
+        setTimeout(() => callback({ response: packet.data }), 5000);
+        return () => {};
     }
 }
