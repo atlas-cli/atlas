@@ -36,6 +36,6 @@ export class ClientEventBridge extends ClientProxy {
     ) {
         console.log('AWS Event-Bridge and sqs don\´t support request-response. ');
         setTimeout(() => callback({ response: packet.data }), 5000);
-        return () => {};
+        return () => undefined;
     }
 }

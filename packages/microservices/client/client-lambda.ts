@@ -1,9 +1,9 @@
 import { ClientProxy, ReadPacket, RpcException, WritePacket } from '@nestjs/microservices';
 import { LambdaClient, InvokeCommand, } from '@aws-sdk/client-lambda';
-import { from, Observable, Observer, throwError as _throw, } from 'rxjs';
+import { throwError as _throw, } from 'rxjs';
 import { ClientLambdaConfig } from './../types/client-lambda-config';
 
-declare var TextEncoder: any
+declare const TextEncoder: any
 
 export class ClientLambda extends ClientProxy {
     client: LambdaClient;
@@ -56,7 +56,7 @@ export class ClientLambda extends ClientProxy {
         this.client.send(command).then(
             (event) => {
                 const u8 = new Uint8Array(event.Payload);
-                let response: any = JSON.parse(Buffer.from(u8).toString());
+                const response: any = JSON.parse(Buffer.from(u8).toString());
                 if (response.errorMessage !== undefined) {
                     return callback({ err: new RpcException(response.errorMessage) })
                 };
