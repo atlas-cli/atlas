@@ -4,12 +4,17 @@
   "description": "technology stack focused on value generation",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "build": "gulp build --dist node_modules/@atlas",
-    "build:prod": "gulp build",
     "lint": "concurrently 'npm run lint:packages' 'npm run lint:spec'",
     "lint:spec": "eslint 'packages/**/**.spec.ts'",
     "lint:packages": "eslint 'packages/**/**.ts' --ignore-pattern 'packages/**/*.spec.ts'",
+    "test": "jest packages",
+    "test:integration": "jest integration",
+    "build": "npm run build:integration",
+    "build:integration": "tsc --build integration/tsconfig.json",
+    "build:packages": "gulp build --dist node_modules/@atlas",
+    "build:prod": "gulp build",
+    "deploy": "cdk deploy --outputs-file ./integration/hello-world/env.json",
+    "destroy": "cdk destroy",
     "coverage": "jest --coverage"
   },
   "repository": {
@@ -43,8 +48,11 @@
     "@types/jest": "^28.1.8",
     "@typescript-eslint/eslint-plugin": "^5.35.1",
     "@typescript-eslint/parser": "^5.35.1",
+    "aws-cdk": "^2.42.1",
+    "axios": "^0.27.2",
     "commitlint-circle": "^1.0.0",
     "concurrently": "^7.3.0",
+    "esbuild": "^0.15.8",
     "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
@@ -57,6 +65,8 @@
     "typescript": "4.7.4"
   },
   "dependencies": {
+    "aws-cdk-lib": "^2.42.1",
+    "constructs": "^10.1.108",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.5.6"
   }

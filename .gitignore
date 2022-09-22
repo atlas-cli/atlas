@@ -21,10 +21,13 @@ yarn-error.log
 /packages/**/.npmignore
 /packages/**/LICENSE
 
-# example
-/quick-start
-/example_dist
-/example
+# dists
+/dist
+/integration_dist
+/cdk.out
+
+# env
+**/**/env.json
 
 # tests
 /test
