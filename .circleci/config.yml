@@ -1,5 +1,7 @@
-version: 2
+version: 2.1
 
+orbs:
+  aws-cli: circleci/aws-cli@3.1
 aliases:
   - &restore-cache
     restore_cache:
@@ -15,7 +17,7 @@ aliases:
   - &run-integration-tests
     run:
         name: Test
-        command: npm run test
+        command: npm run test:integration
   - &build-packages
     run:
         name: Build
@@ -107,10 +109,17 @@ jobs:
           command: ./node_modules/.bin/commitlint-circle -c .commitlintrc.json
   integration_tests:
     working_directory: ~/atlas
+    executor: aws-cli/default
     docker:
       - image: circleci/node:14
     steps:
       - checkout
+      - aws-cli/setup:
+          aws-access-key-id: AWS_ACCESS_KEY
+          aws-secret-access-key: AWS_ACCESS_SECRET
+          aws-region: AWS_REGION_NAME
+      - *restore-cache
+      - *install-deps
       - *build-integration
       - *deploy-integration-tests
       - *run-integration-tests

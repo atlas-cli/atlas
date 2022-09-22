@@ -1,3 +1,4 @@
 {
-    "app": "node integration_dist/infrastructure"
+    "app": "node integration_dist/infrastructure",
+    "requireApproval": "never"
 }

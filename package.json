@@ -14,8 +14,8 @@
     "build:packages": "gulp build --dist node_modules/@atlas",
     "build:prod": "gulp build",
     "deploy": "cdk deploy --outputs-file ./integration/hello-world/env.json",
-    "destroy": "cdk destroy",
-    "coverage": "jest --coverage"
+    "destroy": "yes | npx cdk destroy || true",
+    "coverage": "jest packages/ --coverage"
   },
   "repository": {
     "type": "git",
