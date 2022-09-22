@@ -1,5 +1,7 @@
-version: 2
+version: 2.1
 
+orbs:
+  aws-cli: circleci/aws-cli@3.1
 aliases:
   - &restore-cache
     restore_cache:
@@ -8,14 +10,30 @@ aliases:
     run:
         name: Install dependencies
         command: npm ci
-  - &build-packages
-    run:
-        name: Build
-        command: npm run build
   - &run-unit-tests
     run:
         name: Test
         command: npm run test
+  - &run-integration-tests
+    run:
+        name: Test
+        command: npm run test:integration
+  - &build-packages
+    run:
+        name: Build
+        command: npm run build:packages
+  - &build-integration
+    run:
+        name: Build
+        command: npm run build:integration
+  - &deploy-integration-tests
+    run:
+        name: Deploy integration tests
+        command: npm run deploy
+  - &destroy-integration-tests
+    run:
+        name: Destroy integration tests
+        command: npm run destroy
 
 unit-tests-template: &unit-tests-template
   working_directory: ~/atlas
@@ -89,56 +107,23 @@ jobs:
       - run:
           name: Lint commit
           command: ./node_modules/.bin/commitlint-circle -c .commitlintrc.json
-
-  # integration_tests:
-  #   working_directory: ~/atlas
-  #   machine: true
-  #   steps:
-  #     - checkout
-  #     - run: 
-  #         name: Prepare nvm
-  #         command: |
-  #           echo 'export NVM_DIR="/opt/circleci/.nvm"' >> $BASH_ENV
-  #           echo ' [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
-  #     - run: 
-  #         name: Upgrade Node.js
-  #         command: |
-  #           nvm install v12
-  #           node -v
-  #           nvm alias default v12
-  #     - run:
-  #         name: Install Docker Compose
-  #         command: |
-  #           curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
-  #           chmod +x ~/docker-compose
-  #           sudo mv ~/docker-compose /usr/local/bin/docker-compose
-  #     - *install-deps
-  #     - run:
-  #         name: Prepare tests
-  #         command: |
-  #           bash ./scripts/prepare.sh
-  #           sleep 10
-  #     - run:
-  #         name: List containers
-  #         command: docker ps
-  #     - run:
-  #         name: Integration tests
-  #         command: npm run test:integration
-
-  # samples:
-  #   working_directory: ~/atlas
-  #   docker:
-  #     - image: circleci/node:16
-  #   environment:
-  #     - DISABLE_OPENCOLLECTIVE: true
-  #   steps:
-  #     - checkout
-  #     - *restore-cache
-  #     - *install-deps
-  #     - run:
-  #         name: Build all samples
-  #         command: npm run build:samples
-
+  integration_tests:
+    working_directory: ~/atlas
+    executor: aws-cli/default
+    docker:
+      - image: circleci/node:14
+    steps:
+      - checkout
+      - aws-cli/setup:
+          aws-access-key-id: AWS_ACCESS_KEY
+          aws-secret-access-key: AWS_ACCESS_SECRET
+          aws-region: AWS_REGION_NAME
+      - *restore-cache
+      - *install-deps
+      - *build-integration
+      - *deploy-integration-tests
+      - *run-integration-tests
+      - *destroy-integration-tests
 workflows:
   version: 2
   build-and-test:
@@ -156,9 +141,9 @@ workflows:
       - lint:
           requires:
             - build
-      # - integration_tests:
-      #     requires:
-      #       - build
+      - integration_tests:
+          requires:
+            - build
       # - samples:
       #     requires:
       #       - build

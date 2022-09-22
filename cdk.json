@@ -1,0 +1,4 @@
+{
+    "app": "node integration_dist/infrastructure",
+    "requireApproval": "never"
+}

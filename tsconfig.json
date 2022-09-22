@@ -9,6 +9,7 @@
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
       "useUnknownInCatchVariables": false,
+      "resolveJsonModule": true,
       "target": "es6",
       "sourceMap": true,
       "allowJs": true,
@@ -19,7 +20,7 @@
         "@atlas/microservices/*": ["./packages/microservices/*"],
       }
     },
-    "include": ["packages/**/*", "integration/**/*"],
-    "exclude": ["node_modules", "**/*.spec.ts"]
+    "include": ["packages/**/*"],
+    "exclude": ["node_modules", "cdk.out", "**/*.spec.ts", "integration_dist"],
   }
   
