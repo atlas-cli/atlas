@@ -1,5 +1,5 @@
 import { CustomTransportStrategy, Server } from '@nestjs/microservices';
-import { TRANSPORT_METADATA_REQUEST_RESPONSE } from '../contants';
+import { TRANSPORT_METADATA_REQUEST_RESPONSE } from '../constants';
 
 export class ServerLambda extends Server implements CustomTransportStrategy {
   listen(callback: () => void) {

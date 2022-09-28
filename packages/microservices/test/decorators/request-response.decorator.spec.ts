@@ -2,7 +2,7 @@ import {
     PATTERN_METADATA,
     TRANSPORT_METADATA,
   } from '@nestjs/microservices/constants';
-  import { TRANSPORT_METADATA_REQUEST_RESPONSE } from './../../contants';
+  import { TRANSPORT_METADATA_REQUEST_RESPONSE } from './../../constants';
   import { RequestResponsePattern } from './../../decorators/request-response.decorator';
   
   describe('@RequestResponsePattern', () => {

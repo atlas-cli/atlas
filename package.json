@@ -4,6 +4,8 @@
   "description": "technology stack focused on value generation",
   "main": "index.js",
   "scripts": {
+    "postinstall": "npm run install:integration",
+    "install:integration": "(cd integration/hello-world && npm install)",
     "lint": "concurrently 'npm run lint:packages' 'npm run lint:spec'",
     "lint:spec": "eslint 'packages/**/**.spec.ts'",
     "lint:packages": "eslint 'packages/**/**.ts' --ignore-pattern 'packages/**/*.spec.ts'",
@@ -11,7 +13,8 @@
     "test:integration": "jest integration",
     "build": "npm run build:integration",
     "build:integration": "tsc --build integration/tsconfig.json",
-    "build:packages": "gulp build --dist node_modules/@atlas",
+    "build:packages": "gulp build --dist node_modules/@atlas && npm run copy:integration",
+    "copy:integration": "cp -R node_modules/@atlas integration/hello-world/node_modules",
     "build:prod": "gulp build",
     "deploy": "cdk deploy --outputs-file ./integration/hello-world/env.json",
     "destroy": "yes | npx cdk destroy || true",

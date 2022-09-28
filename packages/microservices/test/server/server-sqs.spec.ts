@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import { of } from 'rxjs';
-import { TRANSPORT_METADATA_EVENT_DRIVEN } from '../../contants';
+import { TRANSPORT_METADATA_EVENT_DRIVEN } from '../../constants';
 import { ServerSqs } from './../../server/server-sqs';
 
 describe('Server sqs', () => {

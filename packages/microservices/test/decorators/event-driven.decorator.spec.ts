@@ -2,7 +2,7 @@ import {
   PATTERN_METADATA,
   TRANSPORT_METADATA,
 } from '@nestjs/microservices/constants';
-import { TRANSPORT_METADATA_EVENT_DRIVEN } from './../../contants';
+import { TRANSPORT_METADATA_EVENT_DRIVEN } from './../../constants';
 import { EventDrivenPattern } from '../../decorators/event-driven.decorator';
 
 describe('@EventDrivenPattern', () => {
