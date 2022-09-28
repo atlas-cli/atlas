@@ -120,6 +120,7 @@ jobs:
           aws-region: AWS_REGION_NAME
       - *restore-cache
       - *install-deps
+      - *build-packages
       - *build-integration
       - *deploy-integration-tests
       - *run-integration-tests
