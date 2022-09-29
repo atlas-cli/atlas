@@ -4,3 +4,7 @@
  * https://atlascli.io
  * MIT Licensed
  */
+
+import 'reflect-metadata';
+
+import './stack';
