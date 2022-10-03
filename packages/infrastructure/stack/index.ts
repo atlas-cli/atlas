@@ -1,2 +1,2 @@
-import './core/atlas-core-stack';
-import './http/atlas-http-stack';
+export * from './core/atlas-core-stack';
+export * from './http/atlas-http-stack';

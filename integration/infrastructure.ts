@@ -1,6 +1,4 @@
-import { App } from 'aws-cdk-lib';
-import { HelloWorldStack } from './hello-world/infrastructure';
+import { Atlas } from '@atlas/infrastructure/atlas';
 
-const app = new App();
-new HelloWorldStack(app, 'HelloWorldStack');
-app.synth();
+const atlas = new Atlas();
+atlas.bootstrap();

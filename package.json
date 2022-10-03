@@ -18,7 +18,9 @@
     "build:prod": "gulp build",
     "deploy": "cdk deploy --outputs-file ./integration/hello-world/env.json",
     "destroy": "yes | npx cdk destroy || true",
-    "coverage": "jest packages/ --coverage"
+    "coverage": "jest packages/ --coverage",
+    "atlas:deploy:core": "npm run build:packages && npm run build:integration && cdk deploy --app 'node integration_dist/infrastructure.js deploy core' --outputs-file atlas-core-artifact.json",
+    "atlas:deploy:http": "npm run build:packages && npm run build:integration && cdk deploy --app 'node integration_dist/infrastructure.js deploy http'"
   },
   "repository": {
     "type": "git",

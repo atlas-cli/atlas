@@ -2,7 +2,7 @@ import { readFileSync } from 'fs';
 import { Axios } from 'axios';
 
 describe('hello world', () => {
-  const { HelloWorldStack } = JSON.parse(readFileSync('integration/hello-world/env.json', 'utf-8'))
+  const { HelloWorldStack } = JSON.parse(readFileSync('integration/hello-world/env.json', 'utf-8'));
   const axios = new Axios(
     {
       baseURL: HelloWorldStack.apiUrl

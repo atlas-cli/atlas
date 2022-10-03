@@ -7,4 +7,6 @@
 
 import 'reflect-metadata';
 
-import './stack';
+export * from './stack';
+export * from './atlas';
+export * from './factory';

@@ -18,6 +18,8 @@
       "paths": {
         "@atlas/microservices": ["./packages/microservices"],
         "@atlas/microservices/*": ["./packages/microservices/*"],
+        "@atlas/infrastructure": ["./packages/infrastructure"],
+        "@atlas/infrastructure/*": ["./packages/infrastructure/*"],
       }
     },
     "include": ["packages/**/*"],

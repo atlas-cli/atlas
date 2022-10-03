@@ -28,6 +28,7 @@ yarn-error.log
 
 # env
 **/**/env.json
+**/**/atlas-core-artifact.json
 
 # tests
 /test
