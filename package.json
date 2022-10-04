@@ -20,7 +20,7 @@
     "destroy": "yes | npx cdk destroy || true",
     "coverage": "jest packages/ --coverage",
     "atlas:deploy:core": "npm run build:packages && npm run build:integration && cdk deploy --app 'node integration_dist/infrastructure.js deploy core' --outputs-file atlas-core-artifact.json",
-    "atlas:deploy:http": "npm run build:packages && npm run build:integration && cdk deploy --app 'node integration_dist/infrastructure.js deploy http'"
+    "atlas:deploy:http": "npm run build:packages && npm run build:integration && cdk deploy --app 'node integration_dist/infrastructure.js deploy http' --all"
   },
   "repository": {
     "type": "git",
@@ -55,6 +55,7 @@
     "@typescript-eslint/parser": "^5.35.1",
     "aws-cdk": "^2.42.1",
     "axios": "^0.27.2",
+    "class-validator": "^0.13.2",
     "commitlint-circle": "^1.0.0",
     "concurrently": "^7.3.0",
     "esbuild": "^0.15.8",

@@ -6,9 +6,7 @@ export class HelloWorldStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-
-    const atlasKey = cdk.Fn.importValue('atlasKey');
-    console.log('atlasKey', atlasKey);
+    // console.log('atlasKey', atlasKey);
 
     // 👇 define GET hello world function
     const helloWorldLambda = new lambda.Function(this, 'HelloHandler', {

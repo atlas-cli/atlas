@@ -1,9 +1,12 @@
-import { Module } from "@nestjs/common";
+import { DynamicModule, Module } from "@nestjs/common";
+import { AtlasConfig } from "config/atlas.config";
 import { InfrastructureModule } from "./infrastructure.module";
 
 @Module({
-    imports: [
-        InfrastructureModule.forHttp(),
-    ],
+    imports: [],
 })
-export class HttpModule {}
+export class HttpModule {
+    static fromConfig(atlasConfig?: AtlasConfig,): DynamicModule {
+        return InfrastructureModule.forHttp(atlasConfig);
+    }
+}
