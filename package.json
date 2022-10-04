@@ -11,7 +11,7 @@
     "lint:packages": "eslint 'packages/**/**.ts' --ignore-pattern 'packages/**/*.spec.ts'",
     "test": "jest packages",
     "test:integration": "jest integration",
-    "build": "npm run build:integration",
+    "build": "npm run build:packages",
     "build:integration": "tsc --build integration/tsconfig.json",
     "build:packages": "gulp build --dist node_modules/@atlas && npm run copy:integration",
     "copy:integration": "cp -R node_modules/@atlas integration/hello-world/node_modules",

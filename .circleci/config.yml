@@ -20,11 +20,11 @@ aliases:
         command: npm run test:integration
   - &build-packages
     run:
-        name: Build
+        name: Build packages
         command: npm run build:packages
   - &build-integration
     run:
-        name: Build
+        name: Build integration
         command: npm run build:integration
   - &deploy-integration-tests
     run:
@@ -64,7 +64,7 @@ jobs:
           paths:
             - ./node_modules
       - run:
-          name: Build
+          name: Build packages
           command: npm run build
         
   test_node_12:
