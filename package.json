@@ -19,10 +19,10 @@
     "deploy": "cdk deploy --outputs-file ./integration/hello-world/env.json --all",
     "destroy": "npm run atlas:destroy:application && npm run atlas:destroy:infrastructure",
     "coverage": "jest packages/ --coverage",
-    "atlas:deploy:infrastructure": "npm run build:packages && npm run build:integration && cdk deploy --app 'node integration_dist/infrastructure.js' --all --outputs-file atlas-core-artifact.json",
-    "atlas:deploy:application": "npm run build:packages && npm run build:integration && cdk deploy --app 'node integration_dist/infrastructure.js deploy application' --outputs-file ./integration/hello-world/env.json --all",
-    "atlas:destroy:infrastructure": "yes | npx cdk destroy --app 'node integration_dist/infrastructure.js' || true",
-    "atlas:destroy:application": "yes | npx cdk destroy --app 'node integration_dist/infrastructure.js deploy application' || true"
+    "atlas:deploy:infrastructure": "npm run build:packages && npm run build:integration && cdk deploy --app 'node integration_dist/hello-world/infrastructure.js' --all --outputs-file atlas-core-artifact.json",
+    "atlas:deploy:application": "npm run build:packages && npm run build:integration && cdk deploy --app 'node integration_dist/hello-world/infrastructure.js deploy application' --outputs-file ./integration/hello-world/env.json --all",
+    "atlas:destroy:infrastructure": "yes | npx cdk destroy --app 'node integration_dist/hello-world/infrastructure.js' || true",
+    "atlas:destroy:application": "yes | npx cdk destroy --app 'node integration_dist/hello-world/infrastructure.js deploy application' || true"
   },
   "repository": {
     "type": "git",
