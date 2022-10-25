@@ -10,14 +10,6 @@ aliases:
     run:
         name: Install dependencies
         command: npm ci
-  - &run-unit-tests
-    run:
-        name: Test
-        command: npm run test
-  - &run-integration-tests
-    run:
-        name: Test
-        command: npm run atlas:deploy:infrastructure && npm run atlas:deploy:application
   - &build-packages
     run:
         name: Build packages
@@ -26,10 +18,18 @@ aliases:
     run:
         name: Build integration
         command: npm run build:integration
+  - &run-unit-tests
+    run:
+        name: Run unit tests
+        command: npm run test
   - &deploy-integration-tests
     run:
         name: Deploy integration tests
-        command: npm run deploy
+        command: npm run atlas:deploy:infrastructure && npm run atlas:deploy:application
+  - &run-integration-tests
+    run:
+        name: Run Integration tests
+        command: npm run test:integration
   - &destroy-integration-tests
     run:
         name: Destroy integration tests
