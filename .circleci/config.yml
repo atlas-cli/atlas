@@ -17,7 +17,7 @@ aliases:
   - &run-integration-tests
     run:
         name: Test
-        command: npm run atlas:deploy:core && npm run atlas:deploy:application
+        command: npm run atlas:deploy:infrastructure && npm run atlas:deploy:application
   - &build-packages
     run:
         name: Build packages
