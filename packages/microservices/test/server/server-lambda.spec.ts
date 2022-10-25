@@ -1,4 +1,4 @@
-import { TRANSPORT_METADATA_REQUEST_RESPONSE } from '../../contants';
+import { TRANSPORT_METADATA_REQUEST_RESPONSE } from '../../constants';
 import { ServerLambda } from './../../server/server-lambda';
 
 describe('Server lambda', () => {

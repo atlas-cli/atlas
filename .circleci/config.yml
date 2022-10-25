@@ -10,26 +10,26 @@ aliases:
     run:
         name: Install dependencies
         command: npm ci
-  - &run-unit-tests
-    run:
-        name: Test
-        command: npm run test
-  - &run-integration-tests
-    run:
-        name: Test
-        command: npm run test:integration
   - &build-packages
     run:
-        name: Build
+        name: Build packages
         command: npm run build:packages
   - &build-integration
     run:
-        name: Build
+        name: Build integration
         command: npm run build:integration
+  - &run-unit-tests
+    run:
+        name: Run unit tests
+        command: npm run test
   - &deploy-integration-tests
     run:
         name: Deploy integration tests
-        command: npm run deploy
+        command: npm run atlas:deploy:infrastructure && npm run atlas:deploy:application
+  - &run-integration-tests
+    run:
+        name: Run Integration tests
+        command: npm run test:integration
   - &destroy-integration-tests
     run:
         name: Destroy integration tests
@@ -64,7 +64,7 @@ jobs:
           paths:
             - ./node_modules
       - run:
-          name: Build
+          name: Build packages
           command: npm run build
         
   test_node_12:
@@ -120,6 +120,7 @@ jobs:
           aws-region: AWS_REGION_NAME
       - *restore-cache
       - *install-deps
+      - *build-packages
       - *build-integration
       - *deploy-integration-tests
       - *run-integration-tests

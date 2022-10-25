@@ -2,7 +2,7 @@ import { ClientProxy, ReadPacket, WritePacket } from '@nestjs/microservices';
 import { throwError as _throw, } from 'rxjs';
 import { EventBridgeClient, PutEventsCommand, PutEventsCommandInput } from '@aws-sdk/client-eventbridge';
 import { ClientEventBridgeConfig } from './../types/client-event-bridge-config';
-import { DEFAULT_DETAIL_TYPE } from './../contants';
+import { DEFAULT_DETAIL_TYPE } from '../constants';
 
 export class ClientEventBridge extends ClientProxy {
     client: EventBridgeClient;

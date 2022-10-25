@@ -2,7 +2,7 @@ import {
   CustomTransportStrategy,
 } from '@nestjs/microservices/interfaces';
 import { Server } from '@nestjs/microservices/server';
-import { TRANSPORT_METADATA_EVENT_DRIVEN } from './../contants';
+import { TRANSPORT_METADATA_EVENT_DRIVEN } from '../constants';
 import { firstValueFrom, Observable } from 'rxjs';
 
 export class ServerSqs extends Server implements CustomTransportStrategy {
