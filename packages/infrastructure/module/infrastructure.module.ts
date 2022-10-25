@@ -1,31 +1,30 @@
 import { DynamicModule, Module } from '@nestjs/common';
-import { CoreOutputFactory } from './../factory/core-output.factory';
+import { InfrastructureOutputFactory } from '../factory/infrastructure-output.factory';
 import { AtlasConfig } from '../config/atlas.config';
 import { AppFactory } from '../factory/app.factory';
 import { ConfigFactory } from '../factory/config.factory';
-import { CoreFactory } from '../factory/core.factory';
-import { HttpFactory } from '../factory/http.factory';
+import { DEFAULT_APPLICATION_STACKS, DEFAULT_INFRASTRUCTURE_STACKS } from './../constants';
 
 @Module({})
 export class InfrastructureModule {
-    public static forCore(atlasConfig?: AtlasConfig,): DynamicModule {
+    public static forInfrastructure(atlasConfig?: AtlasConfig,): DynamicModule {
         return {
             module: InfrastructureModule,
             providers: [
                 ConfigFactory(atlasConfig),
                 AppFactory,
-                CoreFactory,
+                ...(atlasConfig.infrastructures ?? DEFAULT_INFRASTRUCTURE_STACKS),
             ],
         };
     }
-    public static forHttp(atlasConfig?: AtlasConfig,): DynamicModule {
+    public static forApplication(atlasConfig?: AtlasConfig,): DynamicModule {
         return {
             module: InfrastructureModule,
             providers: [
                 ConfigFactory(atlasConfig),
                 AppFactory,
-                CoreOutputFactory,
-                HttpFactory,
+                InfrastructureOutputFactory,
+                ...(atlasConfig.applications ?? DEFAULT_APPLICATION_STACKS),
             ],
         };
     }

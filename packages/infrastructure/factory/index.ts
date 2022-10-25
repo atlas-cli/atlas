@@ -1,3 +1,3 @@
 export * from './app.factory';
-export * from './core.factory';
-export * from './http.factory';
+export * from './stack.factory';
+export * from './application-stack.factory';
