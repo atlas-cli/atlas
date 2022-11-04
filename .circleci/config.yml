@@ -107,7 +107,7 @@ jobs:
       - run:
           name: Lint commit
           command: ./node_modules/.bin/commitlint-circle -c .commitlintrc.json
-  integration_test_build:
+  integration_build:
     working_directory: ~/atlas
     executor: aws-cli/default
     docker:
@@ -122,13 +122,16 @@ jobs:
       - *install-deps
       - *build-packages
       - *build-integration
-  integration_test_echo:
+  integration_hello_world_deploy:
     working_directory: ~/atlas
     executor: aws-cli/default
     docker:
       - image: circleci/node:14
     steps:
       - checkout
+      - *deploy-integration-tests-hello-world
+      - *run-integration-tests-hello-world
+      - *destroy-integration-tests-hello-world
 workflows:
   version: 2
   build-and-test:
@@ -146,12 +149,12 @@ workflows:
       - lint:
           requires:
             - build
-      - integration_test_build:
+      - integration_build:
           requires:
             - build
-      - integration_test_echo:
+      - integration_hello_world_deploy:
           requires:
-            - integration_test_build
+            - integration_build
       # - samples:
       #     requires:
       #       - build
