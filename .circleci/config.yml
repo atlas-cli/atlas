@@ -5,7 +5,7 @@ orbs:
 aliases:
   - &restore-cache
     restore_cache:
-        key: dependency-cache-{{ checksum "package.json" }}
+        key: dependency-cache-{{ checksum "package.json" }}-{{ checksum "integration/hello-world/package.json" }}-{{ checksum "integration/nestjs-application/package.json" }}
   - &install-deps
     run:
         name: Install dependencies
@@ -55,12 +55,12 @@ jobs:
           name: Update NPM version
           command: 'sudo npm install -g npm@latest'
       - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-{{ checksum "package.json" }}-{{ checksum "integration/hello-world/package.json" }}-{{ checksum "integration/nestjs-application/package.json" }}
       - run:
           name: Install dependencies
           command: npm ci
       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-{{ checksum "package.json" }}-{{ checksum "integration/hello-world/package.json" }}-{{ checksum "integration/nestjs-application/package.json" }}
           paths:
             - ./node_modules
             - ./integration/hello-world/node_modules/
