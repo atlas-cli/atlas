@@ -22,18 +22,18 @@ aliases:
     run:
         name: Run unit tests
         command: npm run test
-  - &deploy-integration-tests
+  - &deploy-integration-tests-hello-world
     run:
         name: Deploy integration tests
-        command: npm run atlas:deploy:infrastructure && npm run atlas:deploy:application
-  - &run-integration-tests
+        command: sh scripts/core.sh deploy hello-world infrastructure --outputs-file atlas-core-artifact.json && sh scripts/core.sh deploy hello-world application --outputs-file ./integration/hello-world/env.json
+  - &run-integration-tests-hello-world
     run:
         name: Run Integration tests
         command: npm run test:integration
-  - &destroy-integration-tests
+  - &destroy-integration-tests-hello-world
     run:
         name: Destroy integration tests
-        command: npm run destroy
+        command: yes | sh scripts/core.sh destroy hello-world application || true && yes | sh scripts/core.sh destroy hello-world infrastructure || true 
 
 unit-tests-template: &unit-tests-template
   working_directory: ~/atlas
@@ -122,9 +122,9 @@ jobs:
       - *install-deps
       - *build-packages
       - *build-integration
-      - *deploy-integration-tests
-      - *run-integration-tests
-      - *destroy-integration-tests
+      - *deploy-integration-tests-hello-world
+      - *run-integration-tests-hello-world
+      - *destroy-integration-tests-hello-world
 workflows:
   version: 2
   build-and-test:
