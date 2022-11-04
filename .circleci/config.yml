@@ -129,7 +129,6 @@ jobs:
       - image: circleci/node:14
     steps:
       - checkout
-      - echo 'test'
 workflows:
   version: 2
   build-and-test:
@@ -153,7 +152,6 @@ workflows:
       - integration_test_echo:
           requires:
             - integration_test_build
-            - build
       # - samples:
       #     requires:
       #       - build
