@@ -10,7 +10,7 @@ export class Atlas {
     ) { }
     async bootstrap() {
         let app: INestApplicationContext;
-        if (process.argv[process.argv.length - 2] === 'deploy') {
+        if (process.argv[process.argv.length - 2] === 'build') {
             if (process.argv[process.argv.length - 1] === 'application') {
                 app = await this.forApplication();
             }

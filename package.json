@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "npm run install:integration",
-    "install:integration": "(cd integration/hello-world && npm install)",
+    "install:integration": "(cd integration/hello-world && npm install) && (cd integration/nestjs-application && npm install)",
     "lint": "concurrently 'npm run lint:packages' 'npm run lint:spec'",
     "lint:spec": "eslint 'packages/**/**.spec.ts'",
     "lint:packages": "eslint 'packages/**/**.ts' --ignore-pattern 'packages/**/*.spec.ts'",
@@ -14,15 +14,11 @@
     "build": "npm run build:packages",
     "build:integration": "tsc --build integration/tsconfig.json",
     "build:packages": "gulp build --dist node_modules/@atlas && npm run copy:integration",
-    "copy:integration": "cp -R node_modules/@atlas integration/hello-world/node_modules",
+    "copy:integration": "cp -R node_modules/@atlas integration/hello-world/node_modules && cp -R node_modules/@atlas integration/nestjs-application/node_modules",
     "build:prod": "gulp build",
     "deploy": "cdk deploy --outputs-file ./integration/hello-world/env.json --all",
     "destroy": "npm run atlas:destroy:application && npm run atlas:destroy:infrastructure",
-    "coverage": "jest packages/ --coverage",
-    "atlas:deploy:infrastructure": "npm run build:packages && npm run build:integration && cdk deploy --app 'node integration_dist/hello-world/infrastructure.js' --all --outputs-file atlas-core-artifact.json",
-    "atlas:deploy:application": "npm run build:packages && npm run build:integration && cdk deploy --app 'node integration_dist/hello-world/infrastructure.js deploy application' --outputs-file ./integration/hello-world/env.json --all",
-    "atlas:destroy:infrastructure": "yes | npx cdk destroy --app 'node integration_dist/hello-world/infrastructure.js' || true",
-    "atlas:destroy:application": "yes | npx cdk destroy --app 'node integration_dist/hello-world/infrastructure.js deploy application' || true"
+    "coverage": "jest packages/ --coverage"
   },
   "repository": {
     "type": "git",
