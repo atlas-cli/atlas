@@ -120,7 +120,8 @@ jobs:
       - *build-integration
       - save_cache:
           key: integration_dist-{{ checksum "package.json" }}
-          path: ./integration_dist
+          paths:
+            - ./integration_dist
   integration_hello_world_deploy:
     working_directory: ~/atlas
     executor: aws-cli/default
