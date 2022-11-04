@@ -5,7 +5,7 @@ orbs:
 aliases:
   - &restore-cache
     restore_cache:
-        key: dependency-cache-{{ checksum "package.json" }}
+        key: full-cache-{{ checksum "package.json" }}-{{ checksum "integration/hello-world/package.json" }}-{{ checksum "integration/nestjs-application/package.json" }}
   - &install-deps
     run:
         name: Install dependencies
@@ -55,17 +55,19 @@ jobs:
           name: Update NPM version
           command: 'sudo npm install -g npm@latest'
       - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: full-cache-{{ checksum "package.json" }}-{{ checksum "integration/hello-world/package.json" }}-{{ checksum "integration/nestjs-application/package.json" }}
       - run:
           name: Install dependencies
           command: npm ci
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
       - run:
           name: Build packages
           command: npm run build
+      - save_cache:
+          key: full-cache-{{ checksum "package.json" }}-{{ checksum "integration/hello-world/package.json" }}-{{ checksum "integration/nestjs-application/package.json" }}
+          paths:
+            - ./node_modules
+            - ./integration/hello-world/node_modules/
+            - ./integration/nestjs-application/node_modules/
         
   test_node_12:
     <<: *unit-tests-template
@@ -107,7 +109,20 @@ jobs:
       - run:
           name: Lint commit
           command: ./node_modules/.bin/commitlint-circle -c .commitlintrc.json
-  integration_tests:
+  integration_build:
+    working_directory: ~/atlas
+    executor: aws-cli/default
+    docker:
+      - image: circleci/node:14
+    steps:
+      - checkout
+      - *restore-cache
+      - *build-integration
+      - save_cache:
+          key: integration_dist-{{ checksum "package.json" }}
+          paths:
+            - ./integration_dist
+  integration_hello_world_deploy:
     working_directory: ~/atlas
     executor: aws-cli/default
     docker:
@@ -119,9 +134,8 @@ jobs:
           aws-secret-access-key: AWS_ACCESS_SECRET
           aws-region: AWS_REGION_NAME
       - *restore-cache
-      - *install-deps
-      - *build-packages
-      - *build-integration
+      - restore_cache:
+          key: integration_dist-{{ checksum "package.json" }}
       - *deploy-integration-tests-hello-world
       - *run-integration-tests-hello-world
       - *destroy-integration-tests-hello-world
@@ -142,9 +156,12 @@ workflows:
       - lint:
           requires:
             - build
-      - integration_tests:
+      - integration_build:
           requires:
             - build
+      - integration_hello_world_deploy:
+          requires:
+            - integration_build
       # - samples:
       #     requires:
       #       - build
