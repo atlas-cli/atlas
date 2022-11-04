@@ -63,6 +63,8 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
+            - ./integration/hello-world/node_modules/
+            - ./integration/nestjs-application/node_modules/
       - run:
           name: Build packages
           command: npm run build
@@ -129,6 +131,8 @@ jobs:
       - image: circleci/node:14
     steps:
       - checkout
+      - *restore-cache
+      - *install-deps
       - *deploy-integration-tests-hello-world
       - *run-integration-tests-hello-world
       - *destroy-integration-tests-hello-world
