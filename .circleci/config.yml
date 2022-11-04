@@ -25,7 +25,7 @@ aliases:
   - &deploy-integration-tests-hello-world
     run:
         name: Deploy integration tests
-        command: sh scripts/core.sh deploy hello-world infrastructure && sh scripts/core.sh deploy hello-world application
+        command: sh scripts/core.sh deploy hello-world infrastructure --outputs-file atlas-core-artifact.json && sh scripts/core.sh deploy hello-world application
   - &run-integration-tests-hello-world
     run:
         name: Run Integration tests
