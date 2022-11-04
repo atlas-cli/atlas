@@ -116,10 +116,6 @@ jobs:
       - image: circleci/node:14
     steps:
       - checkout
-      - aws-cli/setup:
-          aws-access-key-id: AWS_ACCESS_KEY
-          aws-secret-access-key: AWS_ACCESS_SECRET
-          aws-region: AWS_REGION_NAME
       - *restore-cache
       - *install-deps
       - *build-packages
@@ -131,6 +127,10 @@ jobs:
       - image: circleci/node:14
     steps:
       - checkout
+      - aws-cli/setup:
+          aws-access-key-id: AWS_ACCESS_KEY
+          aws-secret-access-key: AWS_ACCESS_SECRET
+          aws-region: AWS_REGION_NAME
       - *restore-cache
       - *install-deps
       - *deploy-integration-tests-hello-world
