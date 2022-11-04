@@ -117,8 +117,9 @@ jobs:
     steps:
       - checkout
       - *restore-cache
-      - *build-packages
       - *build-integration
+      - store_artifacts:
+          path: ./integration_dist
   integration_hello_world_deploy:
     working_directory: ~/atlas
     executor: aws-cli/default
