@@ -14,16 +14,7 @@ const atlas = new Atlas({
                   {
                       functionName: atlasConfig.name + `-handler`,
                       bundling: {
-                        minify: false,
-                        externalModules: [
-                          'aws-sdk', // Use the 'aws-sdk' available in the Lambda runtime
-                          'cache-manager',
-                          'class-transformer',
-                          '@nestjs/microservices',
-                          '@nestjs/websockets/socket-module',
-                          '@nestjs/websockets/socket-module',
-                          '@nestjs/microservices/microservices-module',
-                        ],
+                        minify: true,
                       },
                       depsLockFilePath: join(__dirname, '../../integration/hello-world', 'package-lock.json'),
                       entry: join(__dirname, 'src/index.js'),

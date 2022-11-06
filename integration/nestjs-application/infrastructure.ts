@@ -14,7 +14,7 @@ const atlas = new Atlas({
                     {
                         functionName: atlasConfig.name + `-handler`,
                         bundling: {
-                          minify: false,
+                          minify: true,
                           externalModules: [
                             'aws-sdk', // Use the 'aws-sdk' available in the Lambda runtime
                             'cache-manager',
