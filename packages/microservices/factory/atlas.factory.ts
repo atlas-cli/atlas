@@ -4,8 +4,7 @@ import { createServer, proxy } from 'aws-serverless-express';
 import { eventContext } from 'aws-serverless-express/middleware';
 import { NestFactory } from '@nestjs/core';
 import { ExpressAdapter } from '@nestjs/platform-express';
-
-const express = require('express');
+import * as express from 'express';
 
 let cachedApplicationStandalone: Server;
 const binaryMimeTypes: string[] = [];

@@ -23,6 +23,7 @@
     },
     "peerDependencies": {
         "@aws-sdk/client-eventbridge": "^3.0.0",
+        "@aws-sdk/client-lambda": "^3.0.0",
         "@nestjs/common": "^9.0.0",
         "@nestjs/core": "^9.0.0",
         "@nestjs/microservices": "^9.0.0",
