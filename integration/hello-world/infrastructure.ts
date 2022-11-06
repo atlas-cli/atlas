@@ -15,6 +15,9 @@ const atlas = new Atlas({
                       functionName: atlasConfig.name + `-handler`,
                       bundling: {
                         minify: true,
+                        externalModules: [
+                          '@atlas'
+                        ],
                       },
                       depsLockFilePath: join(__dirname, '../../integration/hello-world', 'package-lock.json'),
                       entry: join(__dirname, 'src/index.js'),
