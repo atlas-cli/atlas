@@ -1,7 +1,8 @@
 import { Atlas, LambdaStack, CustomStackFactory, } from '@atlas/infrastructure';
 import { LAMBDA_STACK_CONFIG, } from '@atlas/infrastructure/constants';
+import { join } from 'path';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
-
+console.log(__dirname);
 const atlas = new Atlas({
     name: 'nestjs-application',
     applications: [
@@ -9,11 +10,29 @@ const atlas = new Atlas({
             (app, atlasConfig) => {
                 let config = {
                     ...LAMBDA_STACK_CONFIG,
-                    functionProps: {
-                        runtime: lambda.Runtime.NODEJS_14_X,
-                        code: lambda.Code.fromAsset('integration_dist/nestjs-application'),
-                        handler: 'src/index.handler'
-                    },
+                    functionProps: 
+                    {
+                        functionName: atlasConfig.name + `-handler`,
+                        bundling: {
+                          minify: false,
+                          externalModules: [
+                            'aws-sdk', // Use the 'aws-sdk' available in the Lambda runtime
+                            'cache-manager',
+                            'class-transformer',
+                            '@nestjs/microservices',
+                            '@nestjs/websockets/socket-module',
+                            '@nestjs/websockets/socket-module',
+                            '@nestjs/microservices/microservices-module',
+                          ],
+                          nodeModules: [
+                              '@nestjs/microservices'
+                          ],
+                        },
+                        depsLockFilePath: join(__dirname, '../../integration/nestjs-application', 'package-lock.json'),
+                        entry: join(__dirname, 'src/index.js'),
+                        handler: 'handler',
+                        runtime: lambda.Runtime.NODEJS_16_X,
+                      }
                 };
                 return new LambdaStack(app, `lambda-stack`, {}, atlasConfig, config);
             }
