@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppFactory } from './factory/app.factory';
 import { AtlasConfig } from './config/atlas.config';
+import { AtlasLogger } from './logger/atlas.logger';
 import { InfrastructureModule } from './module/infrastructure.module';
 import { INestApplicationContext } from '@nestjs/common';
 
@@ -24,11 +25,17 @@ export class Atlas {
     async forInfrastructure() {
         return await NestFactory.createApplicationContext(
             InfrastructureModule.forInfrastructure(this.config),
+            {
+                logger: new AtlasLogger()
+            }
         );
     }
     async forApplication() {
         return await NestFactory.createApplicationContext(
             InfrastructureModule.forApplication(this.config),
+            {
+                logger: new AtlasLogger()
+            }
         );
     }
 }
