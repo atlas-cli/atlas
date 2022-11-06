@@ -24,9 +24,6 @@ const atlas = new Atlas({
                           '@nestjs/websockets/socket-module',
                           '@nestjs/microservices/microservices-module',
                         ],
-                        nodeModules: [
-                            '@nestjs/microservices'
-                        ],
                       },
                       depsLockFilePath: join(__dirname, '../../integration/hello-world', 'package-lock.json'),
                       entry: join(__dirname, 'src/index.js'),
