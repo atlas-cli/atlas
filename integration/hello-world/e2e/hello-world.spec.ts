@@ -2,10 +2,10 @@ import { readFileSync } from 'fs';
 import { Axios } from 'axios';
 
 describe('hello world', () => {
-  const { LambdaStack } = JSON.parse(readFileSync('integration/hello-world/env.json', 'utf-8'));
+  const environment = JSON.parse(readFileSync('integration/hello-world/env.json', 'utf-8'));
   const axios = new Axios(
     {
-      baseURL: LambdaStack.apiUrl
+      baseURL: environment['lambda-stack'].apiUrl
     }
   );
   test('test hello world api', async () => {
