@@ -3,7 +3,7 @@ import { AppFactory } from './factory/app.factory';
 import { AtlasConfig } from './config/atlas.config';
 import { AtlasLogger } from './logger/atlas.logger';
 import { InfrastructureModule } from './module/infrastructure.module';
-import { INestApplicationContext } from '@nestjs/common';
+import { INestApplicationContext, Logger } from '@nestjs/common';
 
 export class Atlas {
     constructor(
@@ -19,6 +19,9 @@ export class Atlas {
         if (app === undefined) {
             app = await this.forInfrastructure();
         }
+
+
+
         // Run CDK synth
         await app.get(AppFactory).synth();
     }
@@ -26,7 +29,7 @@ export class Atlas {
         return await NestFactory.createApplicationContext(
             InfrastructureModule.forInfrastructure(this.config),
             {
-                logger: new AtlasLogger()
+                logger: new AtlasLogger('Infrastructure')
             }
         );
     }
@@ -34,7 +37,7 @@ export class Atlas {
         return await NestFactory.createApplicationContext(
             InfrastructureModule.forApplication(this.config),
             {
-                logger: new AtlasLogger()
+                logger: new AtlasLogger('Application')
             }
         );
     }
