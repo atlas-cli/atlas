@@ -119,7 +119,7 @@ jobs:
           paths:
             - ./integration_dist
       - persist_to_workspace:
-          root: ~/atlas
+          root: ./
           paths:
             - integration_dist_checksum.txt
   integration_hello_world_deploy:
@@ -134,8 +134,10 @@ jobs:
           aws-secret-access-key: AWS_ACCESS_SECRET
           aws-region: AWS_REGION_NAME
       - *restore-cache
+      - run: ls
       - attach_workspace:
           at: ~/atlas
+      - run: ls
       - restore_cache:
           key: integration_dist-{{ checksum "package.json" }}
       - *deploy-integration-tests-hello-world
