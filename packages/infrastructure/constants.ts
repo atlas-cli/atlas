@@ -3,6 +3,7 @@ import { join } from 'path';
 import { LambdaStackConfig } from "./stack/lambda/lambda.stack.config";
 import { StackFactory, ApplicationStackFactory } from "./factory";
 import { AtlasCoreStack, LambdaStack } from "./stack";
+import { AtlasLogger } from "./logger/atlas.logger";
 
 // Providers
 export const CONFIG = 'CONFIG';
@@ -15,9 +16,18 @@ export const CORE_OUTPUT = 'CORE_OUTPUT';
 export const DEFAULT_INFRASTRUCTURE_STACKS = [
     StackFactory(AtlasCoreStack),
 ];
+
 export const DEFAULT_APPLICATION_STACKS = [
     ApplicationStackFactory(LambdaStack),
 ];
+
+export const DEFAULT_NESTJS_INFRAESTRUCTURE_OPTIONS = {
+    logger: new AtlasLogger('Infrastructure')
+}
+
+export const DEFAULT_NESTJS_APPLICATION_OPTIONS = {
+    logger: new AtlasLogger('Application')
+}
 
 // Stacks Configs
 export const LAMBDA_STACK_CONFIG: LambdaStackConfig = {

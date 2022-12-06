@@ -53,7 +53,7 @@ jobs:
       - checkout
       - run:
           name: Update NPM version
-          command: 'sudo npm install -g npm@latest'
+          command: 'sudo npm install -g npm@6.14.15'
       - restore_cache:
           key: full-cache-{{ checksum "package.json" }}-{{ checksum "integration/hello-world/package.json" }}-{{ checksum "integration/nestjs-application/package.json" }}
       - run:
@@ -80,20 +80,15 @@ jobs:
       - image: circleci/node:14
     
   test_node_16:
+    <<: *unit-tests-template
     working_directory: ~/atlas
     docker:
       - image: circleci/node:16
-    steps:
-      - checkout
-      - *restore-cache
-      - *install-deps
-      - *build-packages
-      - *run-unit-tests
-      - run:
-          name: Collect coverage
-          command: npm run coverage
-      - store_artifacts:
-          path: coverage
+  test_node_18:
+    <<: *unit-tests-template
+    working_directory: ~/atlas
+    docker:
+      - image: cimg/node:18.12
 
   lint:
     working_directory: ~/atlas
@@ -118,8 +113,9 @@ jobs:
       - checkout
       - *restore-cache
       - *build-integration
-      - save_cache:
-          key: integration_dist-{{ checksum "package.json" }}
+      - run: tar -cf - integration_dist | md5sum > integration_dist_checksum.txt
+      - persist_to_workspace:
+          root: ./
           paths:
             - ./integration_dist
   integration_hello_world_deploy:
@@ -134,8 +130,8 @@ jobs:
           aws-secret-access-key: AWS_ACCESS_SECRET
           aws-region: AWS_REGION_NAME
       - *restore-cache
-      - restore_cache:
-          key: integration_dist-{{ checksum "package.json" }}
+      - attach_workspace:
+          at: ~/atlas
       - *deploy-integration-tests-hello-world
       - *run-integration-tests-hello-world
       - *destroy-integration-tests-hello-world
@@ -144,6 +140,9 @@ workflows:
   build-and-test:
     jobs:
       - build
+      - test_node_18:
+          requires:
+            - build
       - test_node_16:
           requires:
             - build
