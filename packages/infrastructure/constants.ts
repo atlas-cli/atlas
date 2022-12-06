@@ -25,7 +25,6 @@ export const DEFAULT_NESTJS_INFRAESTRUCTURE_OPTIONS = {
     logger: new AtlasLogger('Infrastructure')
 }
 
-
 export const DEFAULT_NESTJS_APPLICATION_OPTIONS = {
     logger: new AtlasLogger('Application')
 }
