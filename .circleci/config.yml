@@ -48,12 +48,12 @@ jobs:
   build:
     working_directory: ~/atlas
     docker:
-      - image: circleci/node:14
+      - image: circleci/node:12
     steps:
       - checkout
       - run:
           name: Update NPM version
-          command: 'sudo npm install -g npm@latest'
+          command: 'sudo npm install -g npm@6.14.15'
       - restore_cache:
           key: full-cache-{{ checksum "package.json" }}-{{ checksum "integration/hello-world/package.json" }}-{{ checksum "integration/nestjs-application/package.json" }}
       - run:
@@ -69,12 +69,16 @@ jobs:
             - ./integration/hello-world/node_modules/
             - ./integration/nestjs-application/node_modules/
         
-
+  test_node_12:
+    <<: *unit-tests-template
+    docker:
+      - image: circleci/node:12
 
   test_node_14:
     <<: *unit-tests-template
     docker:
       - image: circleci/node:14
+    
   test_node_16:
     <<: *unit-tests-template
     working_directory: ~/atlas
@@ -82,6 +86,7 @@ jobs:
       - image: circleci/node:16
   test_node_18:
     <<: *unit-tests-template
+    working_directory: ~/atlas
     docker:
       - image: cimg/node:18.12
 
@@ -134,13 +139,16 @@ workflows:
   build-and-test:
     jobs:
       - build
-      - test_node_14:
+      - test_node_18:
           requires:
             - build
       - test_node_16:
           requires:
             - build
-      - test_node_18:
+      - test_node_14:
+          requires:
+            - build
+      - test_node_12:
           requires:
             - build
       - lint:
