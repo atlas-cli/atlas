@@ -19,8 +19,8 @@ export class Atlas {
         if (app === undefined) {
             app = await this.forInfrastructure();
         }
-
-
+                
+        Logger.log('Starting infratructure synth process', 'CDK::Bootstrap');
 
         // Run CDK synth
         await app.get(AppFactory).synth();

@@ -1,12 +1,12 @@
 
-import { ConsoleLogger, ConsoleLoggerOptions, Logger } from '@nestjs/common';
+import { ConsoleLogger, ConsoleLoggerOptions, Logger, LoggerService, Scope, Injectable } from '@nestjs/common';
 
 export type LogLevel = 'log' | 'error' | 'warn' | 'debug' | 'verbose' | 'custom';
 export const isString = (val: any): val is string => typeof val === 'string';
 const logLevels: LogLevel[] = [];
 
-
-export class AtlasLogger extends ConsoleLogger {
+@Injectable({scope: Scope.TRANSIENT})
+export class AtlasLogger extends ConsoleLogger implements LoggerService {
     _lastTimestampAt: number;
     _originalContext: string;
 
@@ -39,7 +39,6 @@ export class AtlasLogger extends ConsoleLogger {
             ...optionalParams,
         ]);
 
-        console.log(optionalParams)
         this.printMessages(messages, context, 'custom');
     }
 
@@ -148,7 +147,7 @@ export class AtlasLogger extends ConsoleLogger {
     }
 
     protected formatContext(context: string): string {
-        context ? console.log(context) : null;
+        // context ? console.log(context) : null;
         return context ? clc.blue(`[${context}] `) : '';
     }
 
