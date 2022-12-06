@@ -118,6 +118,10 @@ jobs:
           key: integration_dist-{{ checksum "integration_dist_checksum.txt" }}
           paths:
             - ./integration_dist
+      - persist_to_workspace:
+          root: ~/atlas
+          paths:
+            - integration_dist_checksum.txt
   integration_hello_world_deploy:
     working_directory: ~/atlas
     executor: aws-cli/default
