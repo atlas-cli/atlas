@@ -113,8 +113,9 @@ jobs:
       - checkout
       - *restore-cache
       - *build-integration
+      - run: tar -cf - integration_dist | md5sum > integration_dist_checksum.txt
       - save_cache:
-          key: integration_dist-{{ checksum "package.json" }}
+          key: integration_dist-{{ checksum "integration_dist_checksum.txt" }}
           paths:
             - ./integration_dist
   integration_hello_world_deploy:
