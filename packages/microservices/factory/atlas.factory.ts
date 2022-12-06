@@ -4,7 +4,6 @@ import { createServer, proxy } from 'aws-serverless-express';
 import { eventContext } from 'aws-serverless-express/middleware';
 import { NestFactory } from '@nestjs/core';
 import { ExpressAdapter } from '@nestjs/platform-express';
-import { AtlasLogger } from '@atlas/infrastructure/logger/atlas.logger';
 
 const express = require('express');
 
