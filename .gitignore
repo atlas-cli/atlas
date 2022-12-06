@@ -24,6 +24,7 @@ yarn-error.log
 # dists
 /dist
 /integration_dist
+/integration/@atlas
 /cdk.out
 
 # env
