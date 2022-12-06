@@ -19,7 +19,6 @@
     "deploy": "cdk deploy --outputs-file ./integration/hello-world/env.json --all",
     "destroy": "npm run atlas:destroy:application && npm run atlas:destroy:infrastructure",
     "coverage": "jest packages/ --coverage",
-    "temp:testLogger": "npm run build && npm run build:integration && bash ./scripts/core.sh diff nestjs-application infrastructure"
   },
   "repository": {
     "type": "git",
