@@ -6,8 +6,9 @@
  */
 import 'reflect-metadata';
 
-import './server';
-import './client';
-import './decorators';
+export * from './server';
+export * from './client';
+export * from './factory';
+export * from './decorators';
 
-import './microservices.module';
+export * from './microservices.module';
