@@ -1,6 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as apigateway from 'aws-cdk-lib/aws-apigateway';
+import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { AtlasConfig } from '../../config';
 import { LAMBDA_STACK_CONFIG } from '../../constants';
 import { LambdaStackConfig } from './lambda.stack.config';
@@ -15,7 +16,11 @@ export class LambdaStack extends cdk.Stack {
   ) {
     super(scope, id, props);
     // 👇 define lambda handler function
-    const lambdaHandler = new lambda.Function(this, id + `-handler`, lambdaStackConfig.functionProps);
+    const lambdaHandler = new NodejsFunction(
+      this,
+      id + `-handler`,
+      lambdaStackConfig.functionProps,
+    );
     const api = new apigateway.RestApi(this, 'api', lambdaStackConfig.restApiProps);
 
     // 👇 create a resource

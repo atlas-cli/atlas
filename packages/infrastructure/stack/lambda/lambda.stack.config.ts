@@ -1,7 +1,8 @@
-import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as apigateway from 'aws-cdk-lib/aws-apigateway';
 
+import { NodejsFunctionProps } from 'aws-cdk-lib/aws-lambda-nodejs';
+
 export class LambdaStackConfig {
-    functionProps: lambda.FunctionProps;
+    functionProps: NodejsFunctionProps;
     restApiProps: apigateway.RestApiProps;
 }
