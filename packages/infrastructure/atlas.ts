@@ -23,7 +23,7 @@ export class Atlas {
         Logger.log('Starting infratructure synth process', 'CDK::Bootstrap');
 
         // Run CDK synth
-        const result = await app.get(AppFactory).synth();
+        await app.get(AppFactory).synth();
     }
     async forInfrastructure() {
         return await NestFactory.createApplicationContext(

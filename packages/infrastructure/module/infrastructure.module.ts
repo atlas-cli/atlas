@@ -6,8 +6,7 @@ import { AppFactory } from '../factory/app.factory';
 import { ConfigFactory } from '../factory/config.factory';
 import { DEFAULT_APPLICATION_STACKS, DEFAULT_INFRASTRUCTURE_STACKS } from './../constants';
 
-@Module({
-})
+@Module({})
 export class InfrastructureModule {
     public static forInfrastructure(atlasConfig?: AtlasConfig,): DynamicModule {
         return {

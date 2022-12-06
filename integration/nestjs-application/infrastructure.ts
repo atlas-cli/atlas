@@ -2,7 +2,7 @@ import { Atlas, LambdaStack, CustomStackFactory } from '@atlas/infrastructure';
 import { LAMBDA_STACK_CONFIG } from '@atlas/infrastructure/constants';
 import { join } from 'path';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
-console.log(__dirname);
+
 const atlas = new Atlas({
   name: 'nestjs-application',
   applications: [
