@@ -83,7 +83,7 @@ jobs:
   test_node_18:
     <<: *unit-tests-template
     docker:
-      - image: circleci/node:18
+      - image: cimg/node:18.12
 
   lint:
     working_directory: ~/atlas
