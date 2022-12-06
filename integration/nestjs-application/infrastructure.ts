@@ -34,7 +34,7 @@ const atlas = new Atlas({
           runtime: lambda.Runtime.NODEJS_16_X,
         },
       };
-      return new LambdaStack(app, `lambda-stack`, {}, atlasConfig, config);
+      return new LambdaStack(app, `nestjs-application-stack`, {}, atlasConfig, config);
     }),
   ],
 });
