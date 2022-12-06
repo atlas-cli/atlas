@@ -4,6 +4,8 @@ import { AtlasConfig } from './config/atlas.config';
 import { AtlasLogger } from './logger/atlas.logger';
 import { InfrastructureModule } from './module/infrastructure.module';
 import { INestApplicationContext, Logger } from '@nestjs/common';
+import * as CONSTANTS from './constants'; 
+
 
 export class Atlas {
     constructor(
@@ -28,17 +30,13 @@ export class Atlas {
     async forInfrastructure() {
         return await NestFactory.createApplicationContext(
             InfrastructureModule.forInfrastructure(this.config),
-            {
-                logger: new AtlasLogger('Infrastructure')
-            }
+            CONSTANTS.DEFAULT_NESTJS_INFRAESTRUCTURE_OPTIONS
         );
     }
     async forApplication() {
         return await NestFactory.createApplicationContext(
             InfrastructureModule.forApplication(this.config),
-            {
-                logger: new AtlasLogger('Application')
-            }
+            CONSTANTS.DEFAULT_NESTJS_APPLICATION_OPTIONS
         );
     }
 }
