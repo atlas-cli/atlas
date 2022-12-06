@@ -134,6 +134,8 @@ jobs:
           aws-secret-access-key: AWS_ACCESS_SECRET
           aws-region: AWS_REGION_NAME
       - *restore-cache
+      - attach_workspace:
+          at: ~/atlas
       - restore_cache:
           key: integration_dist-{{ checksum "package.json" }}
       - *deploy-integration-tests-hello-world
