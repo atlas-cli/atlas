@@ -114,14 +114,10 @@ jobs:
       - *restore-cache
       - *build-integration
       - run: tar -cf - integration_dist | md5sum > integration_dist_checksum.txt
-      - save_cache:
-          key: integration_dist-{{ checksum "integration_dist_checksum.txt" }}
+      - persist_to_workspace:
+          root: ./
           paths:
             - ./integration_dist
-      - persist_to_workspace:
-          root: ~/atlas
-          paths:
-            - integration_dist_checksum.txt
   integration_hello_world_deploy:
     working_directory: ~/atlas
     executor: aws-cli/default
@@ -136,8 +132,6 @@ jobs:
       - *restore-cache
       - attach_workspace:
           at: ~/atlas
-      - restore_cache:
-          key: integration_dist-{{ checksum "package.json" }}
       - *deploy-integration-tests-hello-world
       - *run-integration-tests-hello-world
       - *destroy-integration-tests-hello-world
