@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { AtlasLogger } from '@atlas/infrastructure/logger/atlas.logger';
-import AtlasLoggerTest from '@atlas/common/logger/logger';
+import { AtlasLogger as AtlasLoggerTest } from '@atlas/common/logger/logger';
 
 async function bootstrap() {
   const testLogger = new AtlasLoggerTest();
