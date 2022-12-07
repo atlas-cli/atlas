@@ -232,8 +232,6 @@ export class AtlasLogger extends ConsoleLogger implements LoggerService {
                 return clc.green;
         }
     }
-
-
 }
 
 
@@ -250,7 +248,7 @@ export const clc = {
     red: colorIfAllowed((text: string) => `\x1B[31m${text}\x1B[39m`),
     magentaBright: colorIfAllowed((text: string) => `\x1B[95m${text}\x1B[39m`),
     cyanBright: colorIfAllowed((text: string) => `\x1B[96m${text}\x1B[39m`),
-    blue: colorIfAllowed((text: string) => `\x1b[34m${text}\x1b[34m`),
+    blue: colorIfAllowed((text: string) => `\x1b[34m${text}\x1b[39m`),
 
 };
 
