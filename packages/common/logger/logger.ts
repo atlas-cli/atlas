@@ -1,9 +1,6 @@
 import { ConsoleLogger, LoggerService } from '@nestjs/common';
-import { LogLevel } from './logger.constants';
 
-const logLevels: LogLevel[] = [];
-
-export class AtlasLogger implements LoggerService{
+export class AtlasProtoLogger {
 
     log(message: string){
         this.printMessage(this.formatMessage(message));
@@ -25,11 +22,11 @@ export class AtlasLogger implements LoggerService{
         this.printMessage(this.formatMessage(message));
     }
 
-    printMessage(message: string, printMode?: 'stderr' | 'stdout') {
+    protected printMessage(message: string, printMode?: 'stderr' | 'stdout') {
         process[printMode ?? 'stdout'].write(message);
     }
-
+    
     formatMessage(message: string){
-        return `Atlas base log - ${message}\n`
+        return `Atlas Basic Log:: ${message}\n`
     }
 }
