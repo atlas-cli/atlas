@@ -5,6 +5,7 @@ import * as sourcemaps from 'gulp-sourcemaps';
 
 // Has to be a hardcoded object due to build order
 const packages = {
+  common: createProject('packages/common/tsconfig.json'),
   microservices: createProject('packages/microservices/tsconfig.json'),
   infrastructure: createProject('packages/infrastructure/tsconfig.json'),
 };
