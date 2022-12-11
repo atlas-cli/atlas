@@ -1,9 +1,9 @@
 
 import { Module } from '@nestjs/common';
-import { AtlasLogger } from './atlas.logger';
+// import { AtlasLogger } from './atlas.logger';
 
 @Module({
-  providers: [AtlasLogger],
-  exports: [AtlasLogger],
+  providers: [],
+  exports: [],
 })
 export class AtlasLoggerModule {}

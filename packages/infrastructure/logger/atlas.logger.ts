@@ -10,7 +10,10 @@ export class AtlasLogger extends ConsoleLogger implements LoggerService {
     _lastTimestampAt: number;
     _originalContext: string;
 
-    constructor(context?: string, options?: ConsoleLoggerOptions) {
+    currentLambdaContext: string;
+    lambdaMode: boolean;
+
+    constructor(context?: string, options?: ConsoleLoggerOptions, currentLambdaContext?: string) {
         super()['custom'] = this.custom;
     }
 
@@ -98,6 +101,18 @@ export class AtlasLogger extends ConsoleLogger implements LoggerService {
         this.printMessages(messages, context, 'verbose');
     }
 
+    public setCurrentLambdaContext(id: string) {
+        this.currentLambdaContext = id;
+    }
+
+    public getCurrentLambdaContext(): string {
+        return this.currentLambdaContext;
+    }
+
+    public setLambdaMode(mode: boolean) {
+        this.lambdaMode = mode;
+    }
+
     protected colorize(message: string, logLevel: LogLevel) {
         const color = this._getColorByLogLevel(logLevel);
         return color(message);
@@ -110,7 +125,7 @@ export class AtlasLogger extends ConsoleLogger implements LoggerService {
         writeStreamType?: 'stdout' | 'stderr',
     ) {
         messages.forEach(message => {
-            const pidMessage = this.formatPid(process.pid);
+            const pidMessage = this.lambdaMode ? this.formatPidLambda(this.currentLambdaContext) : this.formatPid(process.pid);
             const contextMessage = this.formatContext(context);
             const timestampDiff = this._updateAndGetTimestampDiff();
             const formattedLogLevel = logLevel.toUpperCase().padStart(3, ' ');
@@ -144,6 +159,10 @@ export class AtlasLogger extends ConsoleLogger implements LoggerService {
 
     protected formatPid(pid: number) {
         return `${pid} - [Atlas]`;
+    }
+
+    protected formatPidLambda(contextId: string): string {
+        return `${contextId} - [Atlas]`;
     }
 
     protected formatContext(context: string): string {
@@ -213,8 +232,6 @@ export class AtlasLogger extends ConsoleLogger implements LoggerService {
                 return clc.green;
         }
     }
-
-
 }
 
 
@@ -231,7 +248,7 @@ export const clc = {
     red: colorIfAllowed((text: string) => `\x1B[31m${text}\x1B[39m`),
     magentaBright: colorIfAllowed((text: string) => `\x1B[95m${text}\x1B[39m`),
     cyanBright: colorIfAllowed((text: string) => `\x1B[96m${text}\x1B[39m`),
-    blue: colorIfAllowed((text: string) => `\x1b[34m${text}\x1b[34m`),
+    blue: colorIfAllowed((text: string) => `\x1b[34m${text}\x1b[39m`),
 
 };
 
