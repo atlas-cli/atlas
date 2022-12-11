@@ -1,5 +1,3 @@
-import { ConsoleLogger, LoggerService } from '@nestjs/common';
-
 export class AtlasProtoLogger {
 
     log(message: string){

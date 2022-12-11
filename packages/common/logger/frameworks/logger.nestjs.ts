@@ -17,7 +17,7 @@ export class AtlasNestLogger extends AtlasProtoLogger implements LoggerService {
     }
 
     formatMessage(message: string, nestModuleContext?: string): string  {
-        const result = `[Atlas] ${this.lambdaMode ? `[${this.lambdaContext}]` : '' } [${nestModuleContext ?? ''}] :: ${message}\n`
+        const result = `[Atlas]${this.lambdaMode ? ` [${this.lambdaContext}] ` : ' ' }${nestModuleContext ? `[${nestModuleContext}] ` : ''}:: ${message}\n`
         return result;
     }
 
@@ -32,7 +32,4 @@ export class AtlasNestLogger extends AtlasProtoLogger implements LoggerService {
     getLambdaContext(context: string) {
         return this.lambdaContext;
     }
-
-    
-
 }
