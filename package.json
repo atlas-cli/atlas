@@ -15,7 +15,7 @@
     "build": "npm run build:packages",
     "build:integration": "tsc --build integration/tsconfig.json",
     "build:packages": "gulp build --dist node_modules/@atlas-org && npm run copy:integration",
-    "copy:integration": "cp -R node_modules/@atlas-org integration/hello-world/node_modules && cp -R node_modules/@atlas integration/nestjs-application/node_modules",
+    "copy:integration": "cp -R node_modules/@atlas-org integration/hello-world/node_modules && cp -R node_modules/@atlas-org integration/nestjs-application/node_modules",
     "build:prod": "gulp build",
     "prerelease": "gulp copy-misc",
     "publish": "npm run prerelease && npm run build:prod && ./node_modules/.bin/lerna publish --force-publish --access public --exact -m \"chore(@atlas-org) publish %s release\"",
