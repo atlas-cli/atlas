@@ -1,5 +1,5 @@
-import { Atlas, LambdaStack, CustomStackFactory, } from '@atlas/infrastructure';
-import { LAMBDA_STACK_CONFIG, } from '@atlas/infrastructure/constants';
+import { Atlas, LambdaStack, CustomStackFactory, } from '@atlas-org/infrastructure';
+import { LAMBDA_STACK_CONFIG, } from '@atlas-org/infrastructure/constants';
 import { join } from 'path';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 
