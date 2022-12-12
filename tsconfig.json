@@ -16,10 +16,10 @@
       "outDir": "dist",
       "lib": ["es7"],
       "paths": {
-        "@atlas/microservices": ["./packages/microservices"],
-        "@atlas/microservices/*": ["./packages/microservices/*"],
-        "@atlas/infrastructure": ["./packages/infrastructure"],
-        "@atlas/infrastructure/*": ["./packages/infrastructure/*"],
+        "@atlas-org/microservices": ["./packages/microservices"],
+        "@atlas-org/microservices/*": ["./packages/microservices/*"],
+        "@atlas-org/infrastructure": ["./packages/infrastructure"],
+        "@atlas-org/infrastructure/*": ["./packages/infrastructure/*"],
       }
     },
     "include": ["packages/**/*"],
