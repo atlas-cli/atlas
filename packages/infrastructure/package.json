@@ -1,7 +1,7 @@
 {
-    "name": "@atlas/infrastructure",
+    "name": "@atlas-org/infrastructure",
     "version": "0.0.1",
-    "description": "Atlas - modern, fast, powerful AWS lambda implementation (@atlas/infrastructure).",
+    "description": "Atlas - modern, fast, powerful AWS lambda implementation (@atlas-org/infrastructure).",
     "author": "AtlasCLI",
     "license": "MIT",
     "homepage": "https://atlascli.io",
