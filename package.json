@@ -19,6 +19,7 @@
     "build:prod": "gulp build",
     "prerelease": "gulp copy-misc",
     "publish": "npm run prerelease && npm run build:prod && ./node_modules/.bin/lerna publish --force-publish --access public --exact -m \"chore(@atlas-org) publish %s release\"",
+    "database:migration": "node node_modules/@atlas-org/database/cli/index.js",
     "deploy": "cdk deploy --outputs-file ./integration/hello-world/env.json --all",
     "destroy": "npm run atlas:destroy:application && npm run atlas:destroy:infrastructure",
     "coverage": "jest packages/ --coverage"
