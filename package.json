@@ -80,7 +80,9 @@
   "dependencies": {
     "@nestjs/platform-express": "^9.1.6",
     "aws-cdk-lib": "^2.42.1",
+    "aws-sdk": "^2.1282.0",
     "constructs": "^10.1.108",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.5.6"
