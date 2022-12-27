@@ -35,4 +35,4 @@ no sponsors
 
 ## License
 
-Nest is [MIT licensed](LICENSE).
+Atlas is [MIT licensed](LICENSE).
