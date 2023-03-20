@@ -1,6 +1,6 @@
 {
     "name": "@atlas-org/database",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Atlas - modern, fast, powerful AWS lambda implementation (@atlas-org/infrastructure).",
     "author": "AtlasCLI",
     "license": "MIT",
@@ -13,12 +13,10 @@
         "access": "public"
     },
     "dependencies": {
-        "typeorm": "*",
         "aws-sdk": "*",
-        "dot-env": "*"
+        "dot-env": "*",
+        "typeorm": "*"
     },
-    "devDependencies": {},
-    "peerDependencies": {},
     "peerDependenciesMeta": {},
     "bin": {
         "typeorm-lambda-proxy": "./cli/index.js"

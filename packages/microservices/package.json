@@ -1,6 +1,6 @@
 {
     "name": "@atlas/microservices",
-    "version": "0.0.1",
+    "version": "0.0.3",
     "description": "Atlas - modern, fast, powerful AWS lambda implementation (@microservices).",
     "author": "AtlasCLI",
     "license": "MIT",
@@ -32,8 +32,8 @@
     },
     "peerDependenciesMeta": {},
     "dependencies": {
-        "@nestjs/platform-express": "^9.1.6",
         "@nestjs/microservices": "9.0.11",
+        "@nestjs/platform-express": "^9.1.6",
         "express": "^4.18.2"
     }
 }
