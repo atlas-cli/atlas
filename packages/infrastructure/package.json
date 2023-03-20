@@ -1,26 +1,24 @@
 {
-    "name": "@atlas-org/infrastructure",
-    "version": "0.0.1",
-    "description": "Atlas - modern, fast, powerful AWS lambda implementation (@atlas-org/infrastructure).",
-    "author": "AtlasCLI",
-    "license": "MIT",
-    "homepage": "https://atlascli.io",
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/atlas-cli/atlas"
-    },
-    "publishConfig": {
-      "access": "public"
-    },
-    "dependencies": {
-      "aws-cdk-lib": "^2.42.1",
-      "constructs": "^10.0.0"
-    },
-    "devDependencies": {
-        "aws-cdk": "*",
-        "esbuild": "*"
-    },
-    "peerDependencies": {},
-    "peerDependenciesMeta": {}
-  }
-  
+  "name": "@atlas-org/infrastructure",
+  "version": "0.0.3",
+  "description": "Atlas - modern, fast, powerful AWS lambda implementation (@atlas-org/infrastructure).",
+  "author": "AtlasCLI",
+  "license": "MIT",
+  "homepage": "https://atlascli.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/atlas-cli/atlas"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "^2.42.1",
+    "constructs": "^10.0.0"
+  },
+  "devDependencies": {
+    "aws-cdk": "*",
+    "esbuild": "*"
+  },
+  "peerDependenciesMeta": {}
+}
