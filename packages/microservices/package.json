@@ -35,5 +35,6 @@
         "@nestjs/microservices": "9.0.11",
         "@nestjs/platform-express": "^9.1.6",
         "express": "^4.18.2"
-    }
+    },
+    "gitHead": "9d9e3b50d39e0adff16eaae33bfb25daec894082"
 }

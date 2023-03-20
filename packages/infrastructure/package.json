@@ -20,5 +20,6 @@
     "aws-cdk": "*",
     "esbuild": "*"
   },
-  "peerDependenciesMeta": {}
+  "peerDependenciesMeta": {},
+  "gitHead": "9d9e3b50d39e0adff16eaae33bfb25daec894082"
 }
