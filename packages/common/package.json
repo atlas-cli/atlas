@@ -1,6 +1,6 @@
 {
   "name": "@atlas-org/common",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Atlas - modern, fast, powerful AWS lambda implementation (@atlas-org/infrastructure).",
   "author": "AtlasCLI",
   "license": "MIT",
@@ -13,5 +13,5 @@
     "access": "public"
   },
   "peerDependenciesMeta": {},
-  "gitHead": "584f627a15cc751f2d1949e84dc124235b97317e"
+  "gitHead": "f68c907135a353b5bbf7f7e14e12ed4fc72a6ffa"
 }
