@@ -1,6 +1,6 @@
 {
     "name": "@atlas-org/microservices",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "description": "Atlas - modern, fast, powerful AWS lambda implementation (@microservices).",
     "author": "AtlasCLI",
     "license": "MIT",
@@ -15,25 +15,25 @@
     "devDependencies": {
         "@aws-sdk/client-eventbridge": "3.159.0",
         "@aws-sdk/client-lambda": "3.159.0",
-        "@nestjs/common": "^9.0.0",
-        "@nestjs/core": "^9.0.0",
+        "@nestjs/common": "^10.3.3",
+        "@nestjs/core": "^10.3.3",
         "@types/aws-lambda": "^8.10.108",
+        "@types/node": "^20.11.21",
         "aws-lambda": "^1.0.7",
         "aws-serverless-express": "^3.4.0"
     },
     "peerDependencies": {
         "@aws-sdk/client-eventbridge": "^3.0.0",
         "@aws-sdk/client-lambda": "^3.0.0",
-        "@nestjs/common": "^9.0.0",
-        "@nestjs/core": "^9.0.0",
-        "@nestjs/microservices": "^9.0.0",
+        "@nestjs/common": "^10.3.3",
+        "@nestjs/core": "^10.3.3",
         "reflect-metadata": "^0.1.12",
         "rxjs": "^7.1.0"
     },
     "peerDependenciesMeta": {},
     "dependencies": {
-        "@nestjs/microservices": "^9.0.11",
-        "@nestjs/platform-express": "^9.1.6",
+        "@nestjs/microservices": "^10.3.3",
+        "@nestjs/platform-express": "^10.3.3",
         "express": "^4.18.2"
     },
     "gitHead": "584f627a15cc751f2d1949e84dc124235b97317e"
